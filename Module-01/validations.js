@@ -7,11 +7,15 @@ function validate_fields() {
     if (is_empty_field('lastname'))
         return false;
 
-    // validacion fecha cumpleanios
+    // validacion fecha cumpleanios - FALTA ESTE
     if (!is_date_valid())
         return false;
 
-    // validacion usuario
+    // validacion del mail
+    if (!is_mail_valid())
+        return false;
+
+    // validacion del telfono
     if (!is_phone_valid())
         return false;
 
@@ -43,6 +47,22 @@ function is_date_valid() {
     //to do dacidir como ahcer la fecha basicamente
     return true;
 }
+
+function is_mail_valid() {
+    var element = document.getElementById("email");
+
+    if (is_empty_field('email'))
+        return false;
+
+    var expr = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+    if (!isValidExpresion(expr, element.value)) {
+        alert("El mail ingresado no es valido.");
+        return false;
+    }
+
+    return true;
+}
+
 
 function is_phone_valid() {
     var element = document.getElementById("phone");
@@ -129,4 +149,8 @@ function isLetter(leter) {
             return true;
     }
     return false;
+}
+
+function isValidExpresion(reg_exp, text) {
+    return reg_exp.test(text);
 }
