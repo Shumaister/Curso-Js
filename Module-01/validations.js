@@ -16,6 +16,10 @@ function validate_fields() {
     if(!is_user_valid())
         return false;
 
+    // validacion contrasenia
+    if(!is_pass_valid())
+        return false;
+
     return true;
 }
 
@@ -38,32 +42,77 @@ function is_date_valid(){
 }
 
 function is_user_valid(){
+    var element = document.getElementById("user");
+    
     if( is_empty_field('user'))
         return false;
-    
-    var element = document.getElementById("user");
 
-    //if(!anyNumber(element.value) )
-    //    console.log("NO TIENE NUMEROS");
+    if(element.value.length < 8)
+    {
+        alert("El campo Usuario debe contener al menos 8 caracteres");
+        return false;
+    }
 
-    return false;
+    if(!anyNumber(element.value) || !anyLetter(element.value) )
+    {
+        alert("El campo Usuario debe contener letras y numeros.");
+        return false;
+    }
+
+    return true;
 }
 
-function anyNumber(text){ // FIX
+function is_pass_valid(){
+    var element = document.getElementById("pass");
+    
+    if( is_empty_field('pass'))
+        return false;
+
+    if(element.value.length < 8)
+    {
+        alert("El campo Contrasenia debe contener al menos 8 caracteres");
+        return false;
+    }
+
+    return true;
+}
+
+
+/// ---- Commons ToDo: mover a un archivo particular
+
+function anyNumber(text){ 
     for(i=0; i<text.length; i++){
-        if (numeros.indexOf(text.charAt(i),0)!=-1){
-           return true;
+        if(isNumber(text[i])){
+            return true;
         }
      }
      return false;
 }
 
-function anyLetter(text){ // FIX
+function isNumber(number){
+    var numbers = "1234567890";
+    for(var i = 0; i <= 10; i++){
+        if(number === numbers[i])
+            return true;
+    }
+    return false;
+}
+
+function anyLetter(text){
     text = text.toLowerCase();
     for(i=0; i<text.length; i++){
-       if (letras.indexOf(text.charAt(i),0)!=-1){
-          return true;
-       }
+        if(isLetter(text[i])){
+            return true;
+        }
     }
     return false;
  }
+
+ function isLetter(leter){
+    var leters = "qwertyuiopasdfghjklzxcvbnm";
+    for(var i = 0; i <= leters.length; i++){
+        if(leter === leters[i])
+            return true;
+    }
+    return false;
+}
