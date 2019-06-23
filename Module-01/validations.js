@@ -44,8 +44,37 @@ function is_date_valid() {
     if (is_empty_field('birthday'))
         return false;
 
-    //to do dacidir como ahcer la fecha basicamente
-    return true;
+    var element = document.getElementById('birthday');
+
+    var date = element.value.split('/');
+
+    if(date.length !== 3 )
+    {
+        alert("El formato de la fecha no es valida. El formato valido es dd/mm/aaaa");
+        return false;
+    }
+
+    var day = date[0];
+    var month = date[1];
+    var year = date[2];
+
+    var exp = /\d{2}/;
+    if( !isValidExpresion(exp, day) || !isValidExpresion(exp, month) || !isValidExpresion(exp, year) )    
+    {
+        alert("El formato de la fecha no es valida. Recuerde solo usar numeros y barra. El formato valido es dd/mm/aaaa");
+        return false;
+    }
+
+    if(year < 0 || month <= 0 || month > 12)
+       return false;
+
+    // no me gusta del todo, pero me parecio decente 
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        monthLength[1] = 29;
+
+    return day > 0 && day <= monthLength[month - 1];
 }
 
 function is_mail_valid() {
