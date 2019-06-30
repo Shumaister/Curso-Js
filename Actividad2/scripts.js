@@ -1,4 +1,4 @@
-
+/*
 function colaEfectos(){
 	capa = $("#micapa");
 	capa.slideUp(1000);
@@ -15,4 +15,4 @@ function colaEfectos(){
 }
 $(document).ready(function(){
 	colaEfectos();
-});
+});*/
