@@ -1,5 +1,5 @@
 
-function colaEfectos() {
+function colaEfectosColumnaLateral() {
     capa = $("#columnaLateral");
 
     capa.queue(function () {
@@ -37,6 +37,36 @@ function colaEfectos() {
         $(this).dequeue();
     });
 }
+
+function efectoMensajePrincipal(){
+    capa = $("#mensajePrincipal");
+    
+    capa.css({
+        'float': "left",
+        'background-color': "black",
+        'width': "80%",
+        'padding-left': "2%",
+        'padding-right': "2%",
+        'padding-top': "2%",
+        'padding-bottom': "2%",
+        'max-width': "800px"
+    });
+    
+    capa.delay(2000);
+
+    capa.fadeTo(1000, 0.8);
+
+}
+
 $(document).ready(function () {
-    colaEfectos();
+    capa = $("#capaContenedora");
+
+    capa.queue(function () {
+        colaEfectosColumnaLateral();
+        $(this).dequeue();
+    });
+    capa.queue(function () {
+        efectoMensajePrincipal();
+        $(this).dequeue();
+    });
 });
