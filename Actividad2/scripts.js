@@ -38,9 +38,9 @@ function colaEfectosColumnaLateral() {
     });
 }
 
-function efectoMensajePrincipal(){
+function efectoMensajePrincipal() {
     capa = $("#mensajePrincipal");
-    
+
     capa.css({
         'float': "left",
         'background-color': "black",
@@ -51,15 +51,41 @@ function efectoMensajePrincipal(){
         'padding-bottom': "2%",
         'max-width': "800px"
     });
-    
+
     capa.delay(2000);
 
     capa.fadeTo(1000, 0.8);
 
 }
 
+
 $(document).ready(function () {
     capa = $("#capaContenedora");
+
+    $(".contacto").mouseover(function (e) {
+        var x = e.pageX + "px";
+        var y = e.pageY + "px";
+        cuadro = $("#cuadoContacto");
+        cuadro.css({
+            'display': "block",
+            'background': "red",
+            'color': "white",
+            'font': "bold",
+            'position': "absolute",
+            'padding-left': "0.5%",
+            'padding-right': "0.5%",
+            'padding-top': "0.5%",
+            'padding-bottom': "0.5%",
+            'top': y,
+            'left': x,
+        });
+    });
+
+    $(".contacto").mouseout(function (e) {
+        $("#cuadoContacto").css({
+            'display': "none",
+        });
+    });
 
     capa.queue(function () {
         colaEfectosColumnaLateral();
@@ -69,4 +95,6 @@ $(document).ready(function () {
         efectoMensajePrincipal();
         $(this).dequeue();
     });
+
+
 });

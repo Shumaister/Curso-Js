@@ -48,3 +48,11 @@
     font-stretch: normal;
 }
 
+.cuadroVisible{
+    display: block;
+    background: red;
+    color: white;
+    font: bold;
+    position:
+}
+
