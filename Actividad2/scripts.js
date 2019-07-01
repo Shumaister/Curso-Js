@@ -1,4 +1,3 @@
-
 function colaEfectosColumnaLateral() {
     capa = $("#columnaLateral");
 
@@ -41,23 +40,10 @@ function colaEfectosColumnaLateral() {
 function efectoMensajePrincipal() {
     capa = $("#mensajePrincipal");
 
-    capa.css({
-        'float': "left",
-        'background-color': "black",
-        'width': "80%",
-        'padding-left': "2%",
-        'padding-right': "2%",
-        'padding-top': "2%",
-        'padding-bottom': "2%",
-        'max-width': "800px"
-    });
-
+    capa.addClass("bloquePrincipal");
     capa.delay(2000);
-
     capa.fadeTo(1000, 0.8);
-
 }
-
 
 $(document).ready(function () {
     capa = $("#capaContenedora");
@@ -95,6 +81,4 @@ $(document).ready(function () {
         efectoMensajePrincipal();
         $(this).dequeue();
     });
-
-
 });
