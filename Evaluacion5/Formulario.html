@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Formulario 1</title>
+
+    <script type="text/javascript" src="validations.js"></script>
+    
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    
+    <link href="js/jquery-ui.css" rel="stylesheet">
+
+    <script>
+        $(document).ready(function() {
+             
+
+            $( "#confirmacion" ).dialog({
+            modal: true, 
+            autoOpen: false,
+            buttons: {
+                Ok: function() {
+                $( this ).dialog( "close" );
+                }
+            }
+            });
+        
+            $("#enviaForm").click( function () {	
+                if(validate_fields())
+                    $( "#confirmacion" ).dialog('open');	
+            } );
+        
+        });
+                   
+    </script>	
+</head>
+
+<body>
+    <h1>Registro de usuario</h1>
+
+    <form action="noimporta" method="get" onSubmit="return validate_fields()"> 
+
+        <p>Nombre: </p>
+        <input type="text" name="Nombre" id="name" onblur="is_empty_field('name')"/> <br />
+        <br>
+
+        <p>Apellido: </p>
+        <input type="text" name="Apellido" id="lastname" onblur="is_empty_field('lastname')"/> <br />
+        <br>
+
+        <p>Fecha Nacimiento: </p>
+        <input type="text" name="FechaNacimiento" id="birthday" onblur="is_date_valid()"/> <br />
+        <br>
+
+        <p>E-mail: </p>
+        <input type="text" name="EMail" id="email" onblur="is_mail_valid()"/> <br />
+        <br>
+
+        <p>Telefono: </p>
+        <input type="text" name="Telefono" id="phone" onblur="is_phone_valid()"/> <br />
+        <br>
+
+        <p>Usuario: </p>
+        <input type="text" name="Usuario" id="user" onblur="is_user_valid()"/> <br />
+        <br>
+
+        <p>Contrasenia: </p>
+        <input type="password" name="Contrasenia" id="pass" onblur="is_pass_valid()"/> <br />
+        <br>
+
+        <input type="submit" value="Registrar" id="enviaForm" />
+
+        <div id="confirmacion" title="Completo!">
+            <p>
+              <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+              Ha completado todos los datos.
+            </p>
+            <p>
+              <b> Verifique la información antes de ser enviada</b>.
+            </p>
+        </div>
+
+    </form>
+
+</body>
+
+</html>
