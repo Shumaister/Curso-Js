@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Arrastrar y soltar con JQuery UI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <style type="text/css">
+        body { background-color:lightyellow;font-family:Arial;font-size:10pt; }
+        #log { color:yellow;background-color:red;margin-bottom:10px; }
+        #divDestino { height:200px;width:400px;background-color:cyan;z-index:0; }
+        #arrastrar1 { position:absolute;top:270px;left:30px; }
+        #arrastrar2 { position:absolute;top:270px;left:200px; }
+    </style>
+    
+    <!-- Agregamos también la librería JQuery UI -->
+    <script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.js"></script>
+    
+    <!-- Agregamos también el archivo CSS del theme que usemos -->
+    <link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+        
+    <script type="text/javascript">
+        
+        $(document).ready(function()
+        {
+            // Dar a las imágenes la capacidad de mover las imágenes
+            $("#arrastrar1").draggable();
+            $("#arrastrar2").draggable();
+            
+            // Damos la capacidad al div de recibir a otros elementos, admitiendo sólo a la imagen 
+            // cuyo 'id' es 'arrastrar2', y con la condición de que sea soltada estando completamente dentro
+            $("#divDestino").droppable( {accept:"#arrastrar2", tolerance:"fit", drop:elementoSoltado });
+        });
+        
+        // ------------------------------
+        
+        // Al haber definido la propiedad 'accept' para que admita sólo la imagen del logo, no
+        // se producirá efecto alguno si soltamos la otra imagen al no ser admitida.
+        function elementoSoltado( event, ui )
+        {
+            var id = ui.draggable.attr("id");            
+            $("#log").text("La imagen con id [" + id + "] ha sido soltada y aceptada");
+        }
+        
+    </script>
+  </head>
+
+  <body>    
+
+      <div id="log"> </div>
+      
+      <div id="divDestino">Mueve las imágenes y suéltalas aquí (sólo se admite el logo).</div>
+
+      <img src="imagenes/novedades2.jpg" id="arrastrar1" alt="" />
+      <img src="imagenes/jquery.jpg" id="arrastrar2" alt="" />
+      
+  </body>
+
+</html>
